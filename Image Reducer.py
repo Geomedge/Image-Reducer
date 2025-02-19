@@ -828,14 +828,17 @@ def converter():
 
 
     def test_fields():
-        x1 = int(e1.get())
-        x1 = x1 + 1
-        existing = os.path.exists(file_path)
-        existing1 = os.path.exists(save_path)
-        if existing == True and existing1 == True and x1 != None:
-            check()
-        else:
-            messagebox.showerror("Error - Invalid Directory", "Error Code 5 - Can't load the directory!")
+        try:
+            x1 = int(e1.get())
+            x1 = x1 + 1
+            existing = os.path.exists(file_path)
+            existing1 = os.path.exists(save_path)
+            if existing == True and existing1 == True and x1 != None:
+                check()
+            else:
+                messagebox.showerror("Error - Invalid Directory", "Error Code 5 - Can't load the directory!")
+        except:
+            messagebox.showerror("Error - Invalid Resolution", "Error Code 6 - Invalid Directory!")
     
     button1 = tk.Button(root, text='Reduce The Quality!', command=threading.Thread(target = test_fields).start, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
     canvas1.create_window(200, 300, window=button1)
