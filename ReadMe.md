@@ -1,4 +1,6 @@
 # Image Converter
+## What is the program for?
+This program makes it convinient to share images online by reducing the image quality and by reducing the resolution.
 ## How To Use And Install
 - You will require Python. Find it on the official Python Page
 - With that download the "Image Reducer.py" file and just run it using python.
