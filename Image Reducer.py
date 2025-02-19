@@ -789,7 +789,7 @@ def converter():
     def check():
         found_files = []
         directory = []
-        for root, dirs, files in os.walk(r"C:\Users\wiecz\Pictures"):
+        for root, dirs, files in os.walk(file_path):
             for file in files:
                 extensions = [".png",".jpeg",".jpg",".bmp"]
                 for i in range(len(extensions)):
