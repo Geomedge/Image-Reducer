@@ -727,7 +727,7 @@ def converter():
     root.eval('tk::PlaceWindow . centre')
     root.title("Image Reducer")
     
-    canvas1 = tk.Canvas(root, width=400, height=355, relief='raised', bg = theme1)
+    canvas1 = tk.Canvas(root, width=800, height=355, relief='raised', bg = theme1)
     canvas1.pack()
 
     l1 = tk.Label(root, text='Image Quality Reducer', bg = theme1, fg = theme2)
