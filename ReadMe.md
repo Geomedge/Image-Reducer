@@ -1,7 +1,7 @@
-# Text Repeater
+# Image Converter
 ## How To Use And Install
 - You will require Python. Find it on the official Python Page
-- With that download the "V2.22.py" file and just run it using python.
+- With that download the "Image Reducer.py" file and just run it using python.
 - Done!
 ## Versions
 ### - V2.21

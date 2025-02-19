@@ -8,6 +8,8 @@ import webbrowser
 import threading
 import re
 from tkinter import filedialog
+from PIL import Image
+import sys
 #Menu GUI
 
 text = """V2.22:
@@ -38,7 +40,7 @@ V2.21:
 
 -> Fixed a ton of bugs
 
--> Added Threading - Program No Longer Crashes When Repeating Text.
+-> Added Threading - Program No Longer Crashes When Reducing Image Sizes.
 
 Thank You For Supporting My Program!
 """
@@ -744,11 +746,12 @@ def theme():
 #Image Quality Reducer app
 def converter():
     global l5
+    global l8
     root= tk.Tk()
     root.eval('tk::PlaceWindow . centre')
-    root.title("Repeater App")
+    root.title("Image Reducer")
     
-    canvas1 = tk.Canvas(root, width=400, height=275, relief='raised', bg = theme1)
+    canvas1 = tk.Canvas(root, width=400, height=355, relief='raised', bg = theme1)
     canvas1.pack()
 
     l1 = tk.Label(root, text='Image Quality Reducer', bg = theme1, fg = theme2)
@@ -771,34 +774,83 @@ def converter():
     l5 = tk.Label(root, text="NO PATH SELECTED", font="none 9 bold", bg = theme1, fg = theme2)
     canvas1.create_window(200, 125, window=l5)
 
+#SAVE Files
 
-    def a():
+    l7 = tk.Label(root, text='Select Where To Save File:', font="none 12 bold", bg = theme1, fg = theme2)
+    canvas1.create_window(200, 150, window=l7)
+
+    def c():
+        global save_path
+        pathload = path_start + "/pictures"
+        save_path = filedialog.askdirectory(mustexist=True, initialdir=pathload)
+        textl = "Selected Directory : " + save_path
+        l8.config(text=textl)
+        
+    button4 = tk.Button(root, text='Select Folder', command=c, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'), width=25)
+    canvas1.create_window(200, 180, window=button4)
+
+    l8 = tk.Label(root, text="NO PATH SELECTED", font="none 9 bold", bg = theme1, fg = theme2)
+    canvas1.create_window(200, 205, window=l8)
+
+    l3 = tk.Label(root, text='Type the horizontal Resolution:', font="none 12 bold", bg = theme1, fg = theme2)
+    canvas1.create_window(200, 235, window=l3)
+
+    e1 = tk.Entry(root, font="none 12 bold") 
+    canvas1.create_window(200, 260, window=e1)
+
+    def convert(found_files, file):
+        x1 = e1.get()
+        for i in range(len(found_files)):
+            base_width = int(x1)
+            img = Image.open(found_files[i])
+            wpercent = (base_width / float(img.size[0]))
+            hsize = int((float(img.size[1]) * float(wpercent)))
+            img = img.resize((base_width, hsize), Image.Resampling.LANCZOS)
+            path = save_path + "/" + file[i]
+            img.save(path)
+            print(f"{path} Saved!")
+
+    def check():
+        found_files = []
+        directory = []
+        for root, dirs, files in os.walk(r"C:\Users\wiecz\Pictures"):
+            for file in files:
+                extensions = [".png",".jpeg",".jpg",".bmp"]
+                for i in range(len(extensions)):
+                    ext = extensions[i]
+                    if file.endswith(ext):
+                        found_files.append(os.path.join(root, file))
+                        directory.append(file)
+                        print(file)
+        convert(found_files, directory)
+       
+        
+
+
+    def test_fields():
         try:
+            x1 = x1 + 1
             existing = os.path.exists(file_path)
-            if existing == True:
-                quote = "Please check if you want to continue with the following directory : " + file_path
-                messagebox.askyesnocancel("Continue?", quote )
+            existing1 = os.path.exists(save_path)
+            x1 = e1.get()
+            if existing == True and existing1 == True and x1 != None:
+                check()
             else:
                 messagebox.showerror("Error - Invalid Directory", "Error Code 5 - Can't load the directory!")
         except:
-            messagebox.showerror("Error Something Went Wrong", "Something Went Wrong :/")
-
-            
-    def thread_1():
-        t1 = threading.Thread(target = a)
-        t1.start()
+            messagebox.showerror("Resolution", "Invalid Resolution - Restart The Program")
     
-    button1 = tk.Button(root, text='Reduce The Quality!', command=thread_1, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
-    canvas1.create_window(200, 220, window=button1)
+    button1 = tk.Button(root, text='Reduce The Quality!', command=threading.Thread(target = test_fields).start, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
+    canvas1.create_window(200, 300, window=button1)
 
     button7 = tk.Button(root, text='Back', command=lambda:[root.destroy(), menu()], bg=theme3, fg=theme4, font=('helvetica', 9, 'bold'), width=10, height=1)
-    canvas1.create_window(50, 250, window=button7)
+    canvas1.create_window(50, 330, window=button7)
 
     l2 = tk.Label(root, text='Made By Geomedge', bg = theme1, fg = theme2)
     l2.config(font=('helvetica', 9))
-    canvas1.create_window(340, 265, window=l2)
+    canvas1.create_window(340, 330, window=l2)
 
-    root.mainloop
+    root.mainloop()
 
 
 #settings
