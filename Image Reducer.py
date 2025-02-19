@@ -732,10 +732,10 @@ def converter():
 
     l1 = tk.Label(root, text='Image Quality Reducer', bg = theme1, fg = theme2)
     l1.config(font=('none 18 bold'))
-    canvas1.create_window(200, 25, window=l1)
+    canvas1.create_window(400, 25, window=l1)
 
     l2 = tk.Label(root, text='Select File:', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(200, 70, window=l2)
+    canvas1.create_window(400, 70, window=l2)
 
     def b():
         global file_path
@@ -745,15 +745,15 @@ def converter():
         l5.config(text=textl)
         
     button3 = tk.Button(root, text='Select Folder', command=b, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'), width=25)
-    canvas1.create_window(200, 100, window=button3)
+    canvas1.create_window(400, 100, window=button3)
 
     l5 = tk.Label(root, text="NO PATH SELECTED", font="none 9 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(200, 125, window=l5)
+    canvas1.create_window(400, 125, window=l5)
 
 #SAVE Files
 
     l7 = tk.Label(root, text='Select Where To Save File:', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(200, 150, window=l7)
+    canvas1.create_window(400, 150, window=l7)
 
     def c():
         global save_path
@@ -763,16 +763,16 @@ def converter():
         l8.config(text=textl)
         
     button4 = tk.Button(root, text='Select Folder', command=c, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'), width=25)
-    canvas1.create_window(200, 180, window=button4)
+    canvas1.create_window(400, 180, window=button4)
 
     l8 = tk.Label(root, text="NO PATH SELECTED", font="none 9 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(200, 205, window=l8)
+    canvas1.create_window(400, 205, window=l8)
 
     l3 = tk.Label(root, text='Type the horizontal Resolution:', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(200, 235, window=l3)
+    canvas1.create_window(400, 235, window=l3)
 
     e1 = tk.Entry(root, font="none 12 bold") 
-    canvas1.create_window(200, 260, window=e1)
+    canvas1.create_window(400, 260, window=e1)
 
     def convert(found_files, file):
         x1 = e1.get()
@@ -816,14 +816,14 @@ def converter():
             messagebox.showerror("Error - Invalid Resolution", "Error Code 6 - Invalid Directory!")
     
     button1 = tk.Button(root, text='Reduce The Quality!', command=threading.Thread(target = test_fields).start, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
-    canvas1.create_window(200, 300, window=button1)
+    canvas1.create_window(400, 300, window=button1)
 
     button7 = tk.Button(root, text='Back', command=lambda:[root.destroy(), menu()], bg=theme3, fg=theme4, font=('helvetica', 9, 'bold'), width=10, height=1)
     canvas1.create_window(50, 330, window=button7)
 
     l2 = tk.Label(root, text='Made By Geomedge', bg = theme1, fg = theme2)
     l2.config(font=('helvetica', 9))
-    canvas1.create_window(340, 330, window=l2)
+    canvas1.create_window(740, 340, window=l2)
 
     root.mainloop()
 
