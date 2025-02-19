@@ -12,43 +12,19 @@ from PIL import Image
 import sys
 #Menu GUI
 
-text = """V2.22:
--> Added Validation To All Customisations!
+text = """V1.0:
+- Released Program
+V1.1:
+- Fixed initial bugs
 
--> Formatted the program
-
--> Resets Files If Corruption Occurs
-
--> Optimisations!
-
--> Finally Made Font Changes Work Better!
-
--> Fonts Still Need A Bit Of Fixing But Way Better Than Before!
-
-V2.21:
--> New Colour System
-
--> GUI overhaul
-
--> Better Change log
-
--> Invalid Colours Caught - Stops Program From Crashing
-
--> Image Quality Reducer - Fixed Issues With Integers
-
--> Added Message boxes
-
--> Fixed a ton of bugs
-
--> Added Threading - Program No Longer Crashes When Reducing Image Sizes.
 
 Thank You For Supporting My Program!
 """
 
 
 #Saves Me The hassle of changing the version number each time separately!
-Version = "V2.22"
-last_update = 'Last Updated : 02/09/2024'
+Version = "V1.01"
+last_update = 'Last Updated : 19/02/2025'
 #Empty Variables
 path_list = []
 #This just checks if files exists and if not - recreates them
