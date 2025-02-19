@@ -7,6 +7,7 @@ from os import system
 import webbrowser
 import threading
 import re
+from tkinter import filedialog
 #Menu GUI
 
 text = """V2.22:
@@ -31,7 +32,7 @@ V2.21:
 
 -> Invalid Colours Caught - Stops Program From Crashing
 
--> Text Repeater - Fixed Issues With Integers
+-> Image Quality Reducer - Fixed Issues With Integers
 
 -> Added Message boxes
 
@@ -50,7 +51,7 @@ last_update = 'Last Updated : 02/09/2024'
 path_list = []
 #This just checks if files exists and if not - recreates them
 path_start = os.path.expanduser("~")
-path_mid = r"\Documents\Geomedge.inc\Text Repeater"
+path_mid = r"\Documents\Geomedge.inc\Image Quality Reducer"
 existing1 = path_start + r"\Documents\Geomedge.inc"
 existing = os.path.exists(existing1)
 if existing == True:
@@ -233,7 +234,7 @@ def delete():
 
 #Confirmation For Uninstalling
 def confirm():
-    message1 = "Are you sure you want to delete Text Repeater " + Version + "?"
+    message1 = "Are you sure you want to delete Image Quality Reducer " + Version + "?"
     command = messagebox.askquestion(title="Are you sure?", message=message1)
     if command == "yes":
         delete()
@@ -740,8 +741,9 @@ def theme():
     canvas1.create_window(48, 120, window=button7)
 
 
-#text repeater app
-def text_rep():
+#Image Quality Reducer app
+def converter():
+    global l5
     root= tk.Tk()
     root.eval('tk::PlaceWindow . centre')
     root.title("Repeater App")
@@ -749,51 +751,54 @@ def text_rep():
     canvas1 = tk.Canvas(root, width=400, height=275, relief='raised', bg = theme1)
     canvas1.pack()
 
-    label1 = tk.Label(root, text='Text Repeater', bg = theme1, fg = theme2)
-    label1.config(font=('none 18 bold'))
-    canvas1.create_window(200, 25, window=label1)
+    l1 = tk.Label(root, text='Image Quality Reducer', bg = theme1, fg = theme2)
+    l1.config(font=('none 18 bold'))
+    canvas1.create_window(200, 25, window=l1)
 
-    label2 = tk.Label(root, text='Type your Message:', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(200, 70, window=label2)
+    l2 = tk.Label(root, text='Select File:', font="none 12 bold", bg = theme1, fg = theme2)
+    canvas1.create_window(200, 70, window=l2)
 
-    entry1 = tk.Entry(root, font="none 12 bold") 
-    canvas1.create_window(200, 100, window=entry1)
+    def b():
+        global file_path
+        pathload = path_start + "/pictures"
+        file_path = filedialog.askdirectory(mustexist=True, initialdir=pathload)
+        textl = "Selected Directory : " + file_path
+        l5.config(text=textl)
+        
+    button3 = tk.Button(root, text='Select Folder', command=b, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'), width=25)
+    canvas1.create_window(200, 100, window=button3)
 
-    label3 = tk.Label(root, text='How many times should it be repeated?', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(200, 130, window=label3)
+    l5 = tk.Label(root, text="NO PATH SELECTED", font="none 9 bold", bg = theme1, fg = theme2)
+    canvas1.create_window(200, 125, window=l5)
 
-    entry2 = tk.Entry(root, font="none 12 bold")
-    canvas1.create_window(200, 160, window=entry2)
-    
+
     def a():
         try:
-            x1 = entry1.get()
-            try:
-                x2 = int(entry2.get())
-                myfile = open(r'C:\Users\Public\Videos\Repeated text.txt', "a")
-                for i in range(x2):
-                    myfile.write(x1)
-                    myfile.write("\n")
-                myfile.close
-                messagebox.showinfo("Done!", "Task Completed Successfully!")
-            except:
-                messagebox.showerror("Error", "Invalid Number Selected / No Number Found!")
+            existing = os.path.exists(file_path)
+            if existing == True:
+                quote = "Please check if you want to continue with the following directory : " + file_path
+                messagebox.askyesnocancel("Continue?", quote )
+            else:
+                messagebox.showerror("Error - Invalid Directory", "Error Code 5 - Can't load the directory!")
         except:
-            messagebox.showerror("Error!", "Invalid Text!")
+            messagebox.showerror("Error Something Went Wrong", "Something Went Wrong :/")
+
             
     def thread_1():
         t1 = threading.Thread(target = a)
         t1.start()
     
-    button1 = tk.Button(root, text='Create File!', command=thread_1, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
+    button1 = tk.Button(root, text='Reduce The Quality!', command=thread_1, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
     canvas1.create_window(200, 220, window=button1)
 
     button7 = tk.Button(root, text='Back', command=lambda:[root.destroy(), menu()], bg=theme3, fg=theme4, font=('helvetica', 9, 'bold'), width=10, height=1)
     canvas1.create_window(50, 250, window=button7)
 
-    label2 = tk.Label(root, text='Made By Geomedge', bg = theme1, fg = theme2)
-    label2.config(font=('helvetica', 9))
-    canvas1.create_window(340, 265, window=label2)
+    l2 = tk.Label(root, text='Made By Geomedge', bg = theme1, fg = theme2)
+    l2.config(font=('helvetica', 9))
+    canvas1.create_window(340, 265, window=l2)
+
+    root.mainloop
 
 
 #settings
@@ -856,15 +861,15 @@ def menu():
     menu = tk.Tk()
     menu.eval('tk::PlaceWindow . centre')
     menu.configure(bg = theme1)
-    menu.title("Text Repeater")
+    menu.title("Image Quality Reducer")
     canvas1 = tk.Canvas(menu, width=400, height=160, relief='raised', bg = theme1, bd=0, highlightthickness=0)
     canvas1.pack()
 
-    label1 = tk.Label(menu, text='Text Repeater By Geomedge', bg = theme1, fg = theme2)
+    label1 = tk.Label(menu, text='Image Reducer By Geomedge', bg = theme1, fg = theme2)
     label1.config(font=(Title))
     canvas1.create_window(200, 25, window=label1)
 
-    button1 = tk.Button(menu, text='Text Repeater', command=lambda:[menu.destroy(), text_rep()], bg=theme3, fg=theme4, font=(Button_Txt), width=25, height=1)
+    button1 = tk.Button(menu, text='Image Reducer', command=lambda:[menu.destroy(), converter()], bg=theme3, fg=theme4, font=(Button_Txt), width=25, height=1)
     canvas1.create_window(100, 60, window=button1)
 
     button2 = tk.Button(menu, text='Settings', command=lambda:[menu.destroy(), settings()], bg=theme3, fg=theme4, font=(Button_Txt), width=25, height=1)
