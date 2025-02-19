@@ -797,7 +797,6 @@ def converter():
                     if file.endswith(ext):
                         found_files.append(os.path.join(root, file))
                         directory.append(file)
-                        print(file)
         convert(found_files, directory)
        
         
