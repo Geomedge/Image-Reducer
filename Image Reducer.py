@@ -727,7 +727,7 @@ def converter():
     root.eval('tk::PlaceWindow . centre')
     root.title("Image Reducer")
     
-    canvas1 = tk.Canvas(root, width=800, height=355, relief='raised', bg = theme1)
+    canvas1 = tk.Canvas(root, width=800, height=405, relief='raised', bg = theme1)
     canvas1.pack()
 
     l1 = tk.Label(root, text='Image Quality Reducer', bg = theme1, fg = theme2)
@@ -788,9 +788,10 @@ def converter():
             a = (i + 1)
             progress = a / int(len(found_files))
             progress = progress * 100
-            print(progress)
-            
             progress2.set(float(progress))
+            progress = round(progress, 1)
+            progresstext = f"Current Progress : {str(progress)}%"
+            progresslabel.config(text=progresstext)
 
     def check():
         found_files = []
@@ -824,16 +825,20 @@ def converter():
     button1 = tk.Button(root, text='Reduce The Quality!', command=threading.Thread(target = test_fields).start, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
     canvas1.create_window(400, 300, window=button1)
 
+    progresslabel = tk.Label(root, text='Current Progress : 0.0%', font="none 11 bold", bg = theme1, fg = theme2)
+    canvas1.create_window(235, 340, window=progresslabel)
+
+
     progress2 = tk.IntVar()
     progressbar = ttk.Progressbar(root, variable=progress2)
-    canvas1.create_window(400, 325, window=progressbar, width=200)
+    canvas1.create_window(400, 360, window=progressbar, width=500)
 
     button7 = tk.Button(root, text='Back', command=lambda:[root.destroy(), menu()], bg=theme3, fg=theme4, font=('helvetica', 9, 'bold'), width=10, height=1)
-    canvas1.create_window(50, 330, window=button7)
+    canvas1.create_window(50, 380, window=button7)
 
     l2 = tk.Label(root, text='Made By Geomedge', bg = theme1, fg = theme2)
     l2.config(font=('helvetica', 9))
-    canvas1.create_window(740, 340, window=l2)
+    canvas1.create_window(740, 390, window=l2)
 
     root.mainloop()
 
