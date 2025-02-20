@@ -785,6 +785,12 @@ def converter():
             path = save_path + "/" + file[i]
             img.save(path)
             print(f"{path} Saved!")
+            a = (i + 1)
+            progress = a / int(len(found_files))
+            progress = progress * 100
+            print(progress)
+            
+            progress2.set(float(progress))
 
     def check():
         found_files = []
@@ -803,20 +809,23 @@ def converter():
 
 
     def test_fields():
-        try:
-            x1 = int(e1.get())
-            x1 = x1 + 1
-            existing = os.path.exists(file_path)
-            existing1 = os.path.exists(save_path)
-            if existing == True and existing1 == True and x1 != None:
-                check()
-            else:
-                messagebox.showerror("Error - Invalid Directory", "Error Code 5 - Can't load the directory!")
-        except:
-            messagebox.showerror("Error - Invalid Resolution", "Error Code 6 - Invalid Directory!")
+        
+        x1 = int(e1.get())
+        x1 = x1 + 1
+        existing = os.path.exists(file_path)
+        existing1 = os.path.exists(save_path)
+        if existing == True and existing1 == True and x1 != None:
+            check()
+        else:
+            messagebox.showerror("Error - Invalid Directory", "Error Code 5 - Can't load the directory!")
+        
     
     button1 = tk.Button(root, text='Reduce The Quality!', command=threading.Thread(target = test_fields).start, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
     canvas1.create_window(400, 300, window=button1)
+
+    progress2 = tk.IntVar()
+    progressbar = ttk.Progressbar(root, variable=progress2)
+    canvas1.create_window(400, 325, window=progressbar, width=200)
 
     button7 = tk.Button(root, text='Back', command=lambda:[root.destroy(), menu()], bg=theme3, fg=theme4, font=('helvetica', 9, 'bold'), width=10, height=1)
     canvas1.create_window(50, 330, window=button7)
