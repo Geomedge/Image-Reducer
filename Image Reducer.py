@@ -792,6 +792,8 @@ def converter():
             progress = round(progress, 1)
             progresstext = f"Current Progress : {str(progress)}%"
             progresslabel.config(text=progresstext)
+            if progress == 100:
+                messagebox.showinfo("Done!", "Finished Downloading!")
 
     def check():
         found_files = []
