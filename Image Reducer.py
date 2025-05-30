@@ -706,16 +706,14 @@ def converter():
     root= tk.Tk()
     root.eval('tk::PlaceWindow . centre')
     root.title("Image Reducer")
-    
-    canvas1 = tk.Canvas(root, width=800, height=405, relief='raised', bg = theme1)
-    canvas1.pack()
+    root.configure(background=theme1)
+    root.minsize(500, 250)
 
-    l1 = tk.Label(root, text='Image Quality Reducer', bg = theme1, fg = theme2)
-    l1.config(font=('none 18 bold'))
-    canvas1.create_window(400, 25, window=l1)
+    l1 = tk.Label(root, text='Image Quality Reducer', **title)
+    l1.pack(anchor="nw")
 
     l2 = tk.Label(root, text='Select File:', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(400, 70, window=l2)
+    l2.pack()
 
     def b():
         global file_path
@@ -725,15 +723,15 @@ def converter():
         l5.config(text=textl)
         
     button3 = tk.Button(root, text='Select Folder', command=b, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'), width=25)
-    canvas1.create_window(400, 100, window=button3)
+    button3.pack()
 
     l5 = tk.Label(root, text="NO PATH SELECTED", font="none 9 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(400, 125, window=l5)
+    l5.pack()
 
 #SAVE Files
 
     l7 = tk.Label(root, text='Select Where To Save File:', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(400, 150, window=l7)
+    l7.pack()
 
     def c():
         global save_path
@@ -743,16 +741,16 @@ def converter():
         l8.config(text=textl)
         
     button4 = tk.Button(root, text='Select Folder', command=c, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'), width=25)
-    canvas1.create_window(400, 180, window=button4)
+    button4.pack()
 
     l8 = tk.Label(root, text="NO PATH SELECTED", font="none 9 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(400, 205, window=l8)
+    l8.pack()
 
     l3 = tk.Label(root, text='Type the horizontal Resolution:', font="none 12 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(400, 235, window=l3)
+    l3.pack()
 
     e1 = tk.Entry(root, font="none 12 bold") 
-    canvas1.create_window(400, 260, window=e1)
+    e1.pack()
 
     def convert(found_files, file):
         x1 = e1.get()
@@ -805,22 +803,22 @@ def converter():
             messagebox.showerror("Error - Invalid Resolution", "Error Code 6 - Can't load the resolution!")
     
     button1 = tk.Button(root, text='Reduce The Quality!', command=threading.Thread(target = test_fields).start, bg = theme3, fg = theme4, font=('helvetica', 9, 'bold'))
-    canvas1.create_window(400, 300, window=button1)
+    button1.pack()
 
     progresslabel = tk.Label(root, text='Current Progress : 0.0%', font="none 11 bold", bg = theme1, fg = theme2)
-    canvas1.create_window(235, 340, window=progresslabel)
+    progresslabel.pack()
 
 
     progress2 = tk.IntVar()
     progressbar = ttk.Progressbar(root, variable=progress2)
-    canvas1.create_window(400, 360, window=progressbar, width=500)
+    progressbar.pack(side="bottom", fill="x")
 
     button7 = tk.Button(root, text='Back', command=lambda:[root.destroy(), menu()], bg=theme3, fg=theme4, font=('helvetica', 9, 'bold'), width=10, height=1)
-    canvas1.create_window(50, 380, window=button7)
+    button7.pack(anchor="sw", side="left", padx=10, pady=10)
 
     l2 = tk.Label(root, text='Made By Geomedge', bg = theme1, fg = theme2)
     l2.config(font=('helvetica', 9))
-    canvas1.create_window(740, 390, window=l2)
+    l2.pack(anchor="se", side="right", padx=10, pady=10)
 
     root.mainloop()
 
