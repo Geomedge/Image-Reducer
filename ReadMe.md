@@ -13,7 +13,7 @@ New SAU system released with V1.02.1 - Previous Versions don't require it!
 ## What is the program for?
 This program makes it convinient to share images online by reducing the image quality and by reducing the resolution.
 ## Supported Formats
-Program Currently Supports .jpg, .jpeg, .png, .bmp.
+Program Currently Supports `.jpg, .jpeg, .png, .bmp`.<br>
 The program will not support .svg or any other formats such as ones using vectors and will primarily serve bitmap based images such as jpegs and pngs.
 ## Versions:
 ### V1.02.1 + SAU1.03.1:
