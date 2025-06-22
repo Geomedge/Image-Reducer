@@ -3,7 +3,7 @@
 - SAUIGeo (SAU) : `pip install SAUIGeo`
 - Pillow : `pip install pillow`
 ---
-## Requirements for Live Camera Output:
+## Requirements for Image Reducer:
 - Python (3.11+) - (If using Source Code)
 ---
 ## Important:
