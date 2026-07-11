@@ -1,4 +1,5 @@
 # Image Converter
+Planned C# Re-write. Lookout for updates.
 ## Required Packages:
 - SAUIGeo (SAU) : `pip install SAUIGeo`
 - Pillow : `pip install pillow`
